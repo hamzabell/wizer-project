@@ -3,6 +3,11 @@ package com.wizer.springboot.wizerchallenge.models;
 import java.util.ArrayList;
 
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -25,7 +30,7 @@ public class Users {
     @NotNull(message = "User Role is required")
     private RoleType role;
 
-    
+    @OneToMany
     private Cheque cheque;
 
      

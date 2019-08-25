@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class ChequeController {
-    private final AtomicLong counter = new AtomicLong();
 
     @Autowired
     private ChequeRepository chequeRepository;

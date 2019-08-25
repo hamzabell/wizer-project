@@ -75,13 +75,11 @@ public class UserController {
    public ResponseEntity<Object> assignUserCheque(@PathVariable("id") Long id, @RequestBody Cheque cheque){ 
         Optional<Users> optional = userRepository.findById(id);
         String  message;
-        long chequeId;
         Users user = optional.get();
         if ( user.getRole().toString() == "BRANCHMANAGER") {
-            chequeId = chequeCounter.incrementAndGet();
-            chequeRepository.save(new Cheque(chequeId, cheque.getBankName(), cheque.getStartNumber(), cheque.getEndNumber()));
-            Optional<Cheque>  newCheque = chequeRepository.findById(chequeId);
-            user.addCheque(newCheque.get());
+            Cheque newCheque = new Cheque(cheque.getBankName(), cheque.getStartNumber(), cheque.getEndNumber());
+            chequeRepository.save(newCheque);
+            user.addCheque(newCheque);
             return new ResponseEntity<>("Cheque assigned to user", HttpStatus.OK);
         }
         

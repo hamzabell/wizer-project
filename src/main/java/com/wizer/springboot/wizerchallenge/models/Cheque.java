@@ -1,7 +1,21 @@
 package com.wizer.springboot.wizerchallenge.models;
 
+import java.math.BigInteger;
+
 import javax.annotation.processing.Generated;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
+
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
+
+@Document
 
 public class Cheque {
     
@@ -11,17 +25,15 @@ public class Cheque {
 
     private int endNumber;
 
-    
-    private long id;
+    @Id @GeneratedValue private BigInteger id;
 
-    public Cheque(long id, String bankName, int startNumber, int endNumber) {
-        this.id = id;
+    public Cheque(String bankName, int startNumber, int endNumber) {
         this.bankName = bankName;
         this.startNumber = startNumber;
         this.endNumber = endNumber;
     }
 
-    public long getId(){
+    public BigInteger getId(){
         return this.id;
     }
 
