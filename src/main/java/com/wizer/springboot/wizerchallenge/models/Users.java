@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -31,7 +32,7 @@ public class Users {
     private RoleType role;
 
     @OneToMany
-    private Cheque cheque;
+    private java.util.List<Cheque> cheques = new ArrayList<>();
 
      
     public Users(long id, String username, String password, String branch, RoleType role) {
@@ -60,7 +61,5 @@ public class Users {
     public void setPassword(String password){
         this.password = password;
     }
-    public void addCheque(Cheque cheque){
-        this.cheque = cheque;
-    }
+
 }

@@ -74,12 +74,10 @@ public class UserController {
    @RequestMapping(value= "/assign-cheque/{id}", method = RequestMethod.POST)
    public ResponseEntity<Object> assignUserCheque(@PathVariable("id") Long id, @RequestBody Cheque cheque){ 
         Optional<Users> optional = userRepository.findById(id);
-        String  message;
         Users user = optional.get();
         if ( user.getRole().toString() == "BRANCHMANAGER") {
-            Cheque newCheque = new Cheque(cheque.getBankName(), cheque.getStartNumber(), cheque.getEndNumber());
+            Cheque newCheque = new Cheque(cheque.getBankName(), cheque.getStartNumber(), cheque.getEndNumber(), user);
             chequeRepository.save(newCheque);
-            user.addCheque(newCheque);
             return new ResponseEntity<>("Cheque assigned to user", HttpStatus.OK);
         }
         
