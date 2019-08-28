@@ -33,6 +33,10 @@ public class Cheque {
     private int endNumber;
 
     @Id @GeneratedValue private BigInteger id;
+    public Cheque() {
+        
+    }
+
 
     public Cheque(String bankName, int startNumber, int endNumber, Users user) {
         this.bankName = bankName;

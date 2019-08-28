@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+
 import com.wizer.springboot.wizerchallenge.services.MongoUserDetailsService;;
 
 
@@ -26,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// Authorization : Role -> Access
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+		.cors().and()
 		.csrf().disable()
 		.authorizeRequests()
 		.antMatchers("/user/register").permitAll()
@@ -39,6 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder passwordEncoder() {
 	return new BCryptPasswordEncoder();
 	}
+
+	
+    
 
 	@Override
 	public void configure(AuthenticationManagerBuilder builder) throws Exception {

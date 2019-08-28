@@ -17,7 +17,7 @@ import com.sun.tools.javac.util.List;
 public class Users {
 
 
-    private final long id;
+    private long id;
 
     @NotBlank(message = "Username is required")
     private String username;
@@ -34,6 +34,10 @@ public class Users {
     @OneToMany
     private java.util.List<Cheque> cheques = new ArrayList<>();
 
+
+    public Users() {
+
+    }
      
     public Users(long id, String username, String password, String branch, RoleType role) {
         this.username = username;
